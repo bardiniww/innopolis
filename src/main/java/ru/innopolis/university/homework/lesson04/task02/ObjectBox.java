@@ -20,6 +20,11 @@ public class ObjectBox {
         return objects.removeIf(obj -> obj.equals(object));
     }
 
+    /**
+     * Composes a string from all items in the collection {@link #objects}.
+     *
+     * @return string representation of all elements in the collection.
+     */
     public String dump() {
         StringBuilder sb = new StringBuilder();
         objects.forEach(obj -> sb.append(obj).append("\t"));
