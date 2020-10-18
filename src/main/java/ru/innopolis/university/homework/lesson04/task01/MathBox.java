@@ -30,7 +30,6 @@ public class MathBox {
                 .reduce(0d, Double::sum);
     }
 
-
     /**
      * Divides each number in the collection {@link #numbers}
      * by the specified as argument number.
@@ -43,7 +42,6 @@ public class MathBox {
                 .map(num -> num.doubleValue() / splitNumber.doubleValue())
                 .collect(Collectors.toSet());
     }
-
 
     /**
      * Removes element of collection {@link #numbers} that equals the given item.
