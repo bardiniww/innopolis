@@ -20,17 +20,37 @@ public class MathBox {
         return numbers;
     }
 
+    /**
+     * Сalculates the sum of elements in the collection {@link #numbers}.
+     *
+     * @return sum of collection items.
+     */
     public Number summutator() {
         return numbers.stream().map(Number::doubleValue)
                 .reduce(0d, Double::sum);
     }
 
+
+    /**
+     * Divides each number in the collection {@link #numbers}
+     * by the specified as argument number.
+     *
+     * @param splitNumber object extends {@link Number} is number separator
+     * @param <T> type extends Number.
+     */
     public <T extends Number> void splitter(final T splitNumber) {
         numbers = numbers.stream()
                 .map(num -> num.doubleValue() / splitNumber.doubleValue())
                 .collect(Collectors.toSet());
     }
 
+
+    /**
+     * Removes element of collection {@link #numbers} that equals the given item.
+     *
+     * @param target is integer which returns {@code true} for elements to be removed.
+     * @return {@code true} if any elements were removed.
+     */
     public boolean removeElementIfExist(final Integer target) {
         return numbers.removeIf(element ->
                 element instanceof Integer && element.equals(target));
