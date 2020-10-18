@@ -1,7 +1,7 @@
 package ru.innopolis.university.homework.lesson2.task3;
 
-@FunctionalInterface
 interface Sorter {
+
     void sort(Person[] persons);
 
     default void swap(Person[] persons, int a, int b) {

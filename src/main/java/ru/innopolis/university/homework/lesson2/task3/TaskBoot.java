@@ -5,7 +5,18 @@ import java.util.Arrays;
 class TaskBoot {
 
     public static void main(String... args) {
-        Person[] persons = PersonGenerator.generate(10);
+        startPrint(100);
+    }
+
+    /**
+     * Prints a description of original order of persons,
+     * after insertion sort {@link InsertionSorter},
+     * after bubble sort {@link BubbleSorter}.
+     *
+     * @param countOfPersons is count of persons to process.
+     */
+    private static void startPrint(int countOfPersons) {
+        Person[] persons = PersonGenerator.generate(countOfPersons);
         System.out.println("Original:");
         display(persons);
 
@@ -20,6 +31,13 @@ class TaskBoot {
         process(persons, new BubbleSorter());
     }
 
+    /**
+     * Provides to sort array of persons and calculate the time spent
+     * on sorting in milliseconds.
+     *
+     * @param persons is array of random persons to sort.
+     * @param sorter the sorter that will be used for sorting.
+     */
     private static void process(Person[] persons, Sorter sorter) {
         Person[] array = Arrays.copyOf(persons, persons.length);
 
@@ -37,5 +55,4 @@ class TaskBoot {
     private static void display(Person[] persons) {
         Arrays.stream(persons).forEach(System.out::println);
     }
-
 }
