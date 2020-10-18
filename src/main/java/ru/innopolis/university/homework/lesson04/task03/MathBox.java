@@ -1,10 +1,8 @@
-package ru.innopolis.university.homework.lesson04.task01;
-
-import ru.innopolis.university.homework.lesson04.task02.ObjectBox;
+package ru.innopolis.university.homework.lesson04.task03;
 
 import java.util.stream.Collectors;
 
-public class MathBox extends ObjectBox {
+class MathBox extends ObjectBox {
 
     public <T extends Number> MathBox(T[] numbers) {
         super(numbers);

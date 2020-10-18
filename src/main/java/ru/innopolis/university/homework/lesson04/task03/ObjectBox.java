@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson04.task02;
+package ru.innopolis.university.homework.lesson04.task03;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ObjectBox {
+class ObjectBox {
 
     protected Set<Object> objects;
 
