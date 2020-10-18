@@ -12,6 +12,10 @@ public class ObjectBox {
         this.objects = new HashSet<>(Arrays.asList(objects));
     }
 
+    public Set<? super Object> getObjects() {
+        return objects;
+    }
+
     public <T> boolean addObject(T object) {
         return objects.add(object);
     }
