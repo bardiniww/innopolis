@@ -1,85 +1,53 @@
 package ru.innopolis.university.homework.lesson04.task01;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import ru.innopolis.university.homework.lesson04.task02.ObjectBox;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MathBox {
+public class MathBox extends ObjectBox {
 
-    private Set<? extends Number> numbers;
-
-    public MathBox(Number[] numbers) {
-        this.numbers = new HashSet<>(Arrays.asList(numbers));
-    }
-
-    public Set<? extends Number> getNumbers() {
-        return numbers;
+    public <T extends Number> MathBox(T[] numbers) {
+        super(numbers);
     }
 
     /**
-     * Сalculates the sum of elements in the collection {@link #numbers}.
+     * Adds an item to the collection {@link #objects}.
+     *
+     * @param object is object to be added.
+     * @return {@code true} if item were added.
+     */
+    public <T extends Number> boolean addObject(T object) {
+        return objects.add(object);
+    }
+
+    /**
+     * Removes element of collection {@link #objects} that equals the given item.
+     *
+     * @param object is object which returns {@code true} for elements to be removed.
+     * @return {@code true} if any elements were removed.
+     */
+    public <T> boolean deleteObject(T object) {
+        return objects.removeIf(obj -> obj.equals(object));
+    }
+
+    /**
+     * Сalculates the sum of elements in the collection {@link #objects}.
      *
      * @return sum of collection items.
      */
     public Number summutator() {
-        return numbers.stream().map(Number::doubleValue)
-                .reduce(0d, Double::sum);
+        return objects.stream().mapToDouble(n -> ((Number)n).doubleValue()).sum();
     }
 
-
     /**
-     * Divides each number in the collection {@link #numbers}
+     * Divides each number in the collection {@link #objects}
      * by the specified as argument number.
      *
-     * @param splitNumber object extends {@link Number} is number separator
-     * @param <T> type extends Number.
+     * @param splitNumber object extends {@link Number} is number separator.
      */
     public <T extends Number> void splitter(final T splitNumber) {
-        numbers = numbers.stream()
-                .map(num -> num.doubleValue() / splitNumber.doubleValue())
+        objects = objects.stream()
+                .map(n -> ((Number)n).doubleValue() / splitNumber.doubleValue())
                 .collect(Collectors.toSet());
-    }
-
-
-    /**
-     * Removes element of collection {@link #numbers} that equals the given item.
-     *
-     * @param target is integer which returns {@code true} for elements to be removed.
-     * @return {@code true} if any elements were removed.
-     */
-    public boolean removeElementIfExist(final Integer target) {
-        return numbers.removeIf(element ->
-                element instanceof Integer && element.equals(target));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MathBox mathBox = (MathBox) o;
-
-        return new EqualsBuilder()
-                .append(getNumbers(), mathBox.getNumbers())
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(getNumbers())
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "MathBox{" +
-                "numbers=" + numbers +
-                '}';
     }
 }
