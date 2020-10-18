@@ -1,10 +1,10 @@
-package ru.innopolis.university.homework.lesson2.task3;
+package ru.innopolis.university.homework.lesson02.task03;
 
 import com.github.javafaker.Faker;
 
 import java.util.stream.IntStream;
 
-import static ru.innopolis.university.homework.lesson2.task3.Person.Sex;
+import static ru.innopolis.university.homework.lesson02.task03.Person.Sex;
 
 class PersonGenerator {
 

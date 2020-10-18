@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson2.task1;
+package ru.innopolis.university.homework.lesson02.task01;
 
 class CustomException {
 

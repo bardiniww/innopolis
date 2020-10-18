@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson2.task3;
+package ru.innopolis.university.homework.lesson02.task03;
 
 import java.util.Arrays;
 

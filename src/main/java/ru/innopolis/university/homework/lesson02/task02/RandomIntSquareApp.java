@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson2.task2;
+package ru.innopolis.university.homework.lesson02.task02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
