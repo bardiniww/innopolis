@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MathBoxTask01 {
+public class MathBox {
 
     private Set<? extends Number> numbers;
 
-    public MathBoxTask01(Number[] numbers) {
+    public MathBox(Number[] numbers) {
         this.numbers = new HashSet<>(Arrays.asList(numbers));
     }
 
@@ -60,7 +60,7 @@ public class MathBoxTask01 {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        MathBoxTask01 mathBox = (MathBoxTask01) o;
+        MathBox mathBox = (MathBox) o;
 
         return new EqualsBuilder()
                 .append(getNumbers(), mathBox.getNumbers())

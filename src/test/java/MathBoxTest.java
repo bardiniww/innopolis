@@ -1,6 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
-import ru.innopolis.university.homework.lesson04.task01.MathBoxTask01;
+import ru.innopolis.university.homework.lesson04.task01.MathBox;
 
 import java.util.stream.IntStream;
 
@@ -8,11 +8,11 @@ import static org.junit.Assert.*;
 
 public class MathBoxTest {
 
-    private static MathBoxTask01 mathBox;
+    private static MathBox mathBox;
 
     @Before
     public void setUp() {
-        mathBox = new MathBoxTask01(initialize(5));
+        mathBox = new MathBox(initialize(5));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class MathBoxTest {
 
         IntStream.range(0, testArray.length)
                 .forEach(i -> testArray[i] = testArray[i].doubleValue() / splitter);
-        MathBoxTask01 testMathBox = new MathBoxTask01(testArray);
+        MathBox testMathBox = new MathBox(testArray);
         mathBox.splitter(splitter);
 
         assertEquals("splitter failed", testMathBox.getNumbers(), mathBox.getNumbers());
