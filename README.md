@@ -1,4 +1,4 @@
-# innopolis.lesson05.task01
+# innopolis
 
 Общие критерии оценки:
 
