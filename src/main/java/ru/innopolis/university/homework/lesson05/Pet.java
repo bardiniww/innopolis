@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson05.task01;
+package ru.innopolis.university.homework.lesson05;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

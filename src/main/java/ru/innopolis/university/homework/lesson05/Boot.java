@@ -1,4 +1,4 @@
-package ru.innopolis.university.homework.lesson05.task01;
+package ru.innopolis.university.homework.lesson05;
 
 import com.github.javafaker.Faker;
 
