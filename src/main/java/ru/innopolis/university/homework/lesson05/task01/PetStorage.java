@@ -1,22 +1,17 @@
 package ru.innopolis.university.homework.lesson05.task01;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class PetStorage {
 
-    /**
-     * @key long is id of pet.
-     * @value Pet which is associated with key id.
-     */
-    private static final Map<Long, Pet> pets =
-            new HashMap<>();
-
-    public PetStorage(List<Pet> input) {
-        input.forEach(PetStorage::accept);
-    }
+    private static final Set<Pet> pets =
+            new TreeSet<>(Comparator.comparing(Pet::getOwner)
+                    .thenComparing(Pet::getName)
+                    .thenComparing(Pet::getWeight));
 
     /**
      * Provides to add new pet to storage.
@@ -27,10 +22,10 @@ public class PetStorage {
      */
     public void add(Pet pet) {
         if (null != pet) {
-            if (pets.containsKey(pet.getId())) {
+            if (pets.contains(pet)) {
                 throw new IllegalArgumentException("not allowed to add pet with same id " + pet.getId());
             }
-            accept(pet);
+            pets.add(pet);
             return;
         }
 
@@ -42,14 +37,13 @@ public class PetStorage {
      *
      * @throws IllegalArgumentException if input name is null.
      * @param name of pet to find in storage.
-     * @return found pet if exist or null if not.
+     * @return list of found pets if exist or empty list if not.
      */
-    public Pet findByName(String name) {
+    public List<Pet> findByName(String name) {
         if (null != name) {
-            return pets.values().stream()
+            return pets.stream()
                     .filter(pet -> pet.getName().equalsIgnoreCase(name))
-                    .findFirst()
-                    .orElse(null);
+                    .collect(Collectors.toList());
         }
 
         throw new IllegalArgumentException("not allowed to find by null value");
@@ -64,14 +58,19 @@ public class PetStorage {
      * @return true if the change occurred, false if not.
      */
     public boolean edit(long id, Pet pet) {
-        if (null != pets.get(id)) {
-            if (null == pet) {
-                throw new IllegalArgumentException("not allowed null value for pet");
-            }
-            Pet current = pets.get(id);
-            current.setName(pet.getName());
-            current.setOwner(pet.getOwner());
-            current.setWeight(pet.getWeight());
+        if (null == pet) {
+            throw new IllegalArgumentException("not allowed null value for pet");
+        }
+
+        Pet petToEdit = pets.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
+
+        if (null != petToEdit) {
+            petToEdit.setName(pet.getName());
+            petToEdit.setOwner(pet.getOwner());
+            petToEdit.setWeight(pet.getWeight());
             return true;
         }
 
@@ -82,20 +81,6 @@ public class PetStorage {
      * Print all pets presented in storage sorted by owner, name and weight.
      */
     public void printSort() {
-        pets.values().stream()
-                .sorted(Comparator.comparing(Pet::getOwner)
-                        .thenComparing(Pet::getName)
-                        .thenComparing(Pet::getWeight))
-                .forEach(System.out::println);
-
-    }
-
-    private static void accept(Pet pet) {
-        if (pet != null) {
-            pets.put(pet.getId(), pet);
-            return;
-        }
-
-        throw new IllegalArgumentException("not allowed null value");
+        pets.forEach(System.out::println);
     }
 }

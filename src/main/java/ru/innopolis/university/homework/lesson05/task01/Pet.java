@@ -62,7 +62,6 @@ public class Pet {
         Pet pet = (Pet) o;
 
         return new EqualsBuilder()
-                .append(id, pet.id)
                 .append(name, pet.name)
                 .append(weight, pet.weight)
                 .append(owner, pet.owner)
@@ -72,7 +71,6 @@ public class Pet {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(id)
                 .append(name)
                 .append(weight)
                 .append(owner)
