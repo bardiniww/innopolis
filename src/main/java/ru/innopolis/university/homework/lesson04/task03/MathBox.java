@@ -2,30 +2,13 @@ package ru.innopolis.university.homework.lesson04.task03;
 
 import java.util.stream.Collectors;
 
-class MathBox extends ObjectBox {
+/**
+ * @param <T1> is type allowed to keep in storage
+ */
+class MathBox<T1> extends ObjectBox<T1> {
 
-    public <T extends Number> MathBox(T[] numbers) {
+    public <T extends T1> MathBox(T[] numbers) {
         super(numbers);
-    }
-
-    /**
-     * Adds an item to the collection {@link #objects}.
-     *
-     * @param object is object to be added.
-     * @return {@code true} if item were added.
-     */
-    public <T extends Number> boolean addObject(T object) {
-        return objects.add(object);
-    }
-
-    /**
-     * Removes element of collection {@link #objects} that equals the given item.
-     *
-     * @param object is object which returns {@code true} for elements to be removed.
-     * @return {@code true} if any elements were removed.
-     */
-    public <T> boolean deleteObject(T object) {
-        return objects.removeIf(obj -> obj.equals(object));
     }
 
     /**

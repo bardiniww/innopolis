@@ -1,18 +1,26 @@
 package ru.innopolis.university.homework.lesson04.task03;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-class ObjectBox {
+public class ObjectBox <T1> {
 
-    protected Set<Object> objects;
+    protected Set<? super T1> objects;
 
-    public ObjectBox(Object[] objects) {
+    public ObjectBox(T1[] objects) {
         this.objects = new HashSet<>(Arrays.asList(objects));
+    }
+
+    public <T extends T1> boolean addObject(T object, Class<?> clazz) {
+        if (object.getClass().equals(clazz)) {
+            throw new IllegalArgumentException("class " + object.getClass() + "is not allowed to add.");
+        }
+        return objects.add(object);
+    }
+
+    public <T extends T1> boolean deleteObject(T object) {
+        return objects.removeIf(obj -> obj.equals(object));
     }
 
     /**
@@ -24,30 +32,5 @@ class ObjectBox {
         StringBuilder sb = new StringBuilder();
         objects.forEach(obj -> sb.append(obj).append("\t"));
         return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ObjectBox objectBox = (ObjectBox) o;
-
-        return new EqualsBuilder()
-                .append(objects, objectBox.objects)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(objects)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return dump();
     }
 }
